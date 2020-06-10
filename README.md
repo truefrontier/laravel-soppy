@@ -24,6 +24,7 @@ __package.json__
   ...
   "scripts": {
     ...
+    "preserve": "php artisan soggy:make-routes",
     "serve": "cd resources/vue/app && yarn serve",
     "prebuild": "php artisan soggy:make-routes",
     "build": "cd resources/vue/app && yarn build"
