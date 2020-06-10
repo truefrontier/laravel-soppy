@@ -1,6 +1,6 @@
 # laravel-soggy
 
-This is an opinionated Laravel frontend setup for using [vue-cli](https://cli.vuejs.org) with [vue-soggy](https://github.com/truefrontier/vue-soggy) in a [Laravel](https://laravel.com/) project.
+This is an opinionated Laravel frontend setup for using [vue-cli](https://cli.vuejs.org) with [vue-soggy](https://github.com/truefrontier/vue-soggy) in a [Laravel](https://laravel.com/) project. You can even [run multiple vue-cli projects](https://github.com/truefrontier/laravel-soggy/blob/master/README.md#multiple-vue-cli-projects) (eg. `app` and `admin`). You can even [share tailwindcss config](https://github.com/truefrontier/laravel-soggy/blob/master/README.md#share-tailwindcss-assets-too) between the two!
 
 ## How to setup
 
