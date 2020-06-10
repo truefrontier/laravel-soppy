@@ -6,7 +6,7 @@ This is an opinionated Laravel frontend setup for using [vue-cli](https://cli.vu
 
 ### Prerequisites
 
-- [Laravel Installer](https://laravel.com/docs/7.x#installing-laravel) (recommended)
+- [Laravel Installer](https://laravel.com/docs/7.x#installing-laravel) (optional, but recommended)
 - [vue-cli](https://cli.vuejs.org/guide/installation.html)
 
 ### Setup
