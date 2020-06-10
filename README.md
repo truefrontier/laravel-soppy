@@ -170,7 +170,7 @@ $ ln -s [paste]/shared [paste]/admin/src/shared
 
 In each vue-cli project, you'll need to add a `postcss.config.js` file:
 
-__postcss.config.js__
+__resources/vue/[app/admin]/src/postcss.config.js__
 ```
 const path = require('path');
 
@@ -185,19 +185,19 @@ module.exports = {
 
 In each vue-cli project, you'll need to add to the `main.js` file:
 
-__main.js__
+__resources/vue/[app/admin]/src/main.js__
 ```
 require('@/shared/assets/scss/main.scss');
 ```
 
-__shared/assets/scss/main.scss__
+__resources/vue/shared/assets/scss/main.scss__
 ```
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 ```
 
-__shared/tailwind.config.js__
+__resources/vue/shared/tailwind.config.js__
 ```
 module.exports = {
   purge: [
@@ -218,7 +218,7 @@ module.exports = {
 };
 ```
 
-__shared/postcss.config.js__
+__resources/vue/shared/postcss.config.js__
 ```
 const path = require('path');
 
