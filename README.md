@@ -11,15 +11,30 @@ This is an opinionated Laravel frontend setup for using [vue-cli](https://cli.vu
 
 ### Setup
 
-#### 1. `$ laravel new my-project && cd my-project`
+#### 1. Create your laravel project
+`$ laravel new my-project && cd my-project`
 
-#### 2. `$ mkdir resources/vue && cd resources/vue/`
+---
 
-#### 3. `$ vue create app` - Add `vue-router` in history mode
+#### 2. Create the directory to hold your vue-cli app
+`$ mkdir resources/vue && cd resources/vue/`
 
-#### 4. Save the [vue.config.js](https://github.com/truefrontier/laravel-soggy/blob/master/resources/vue/vue.config.js) from this repo to `/resources/vue/vue.config.js`
+---
 
-#### 5. Save the [SoggyMakeRoutes command](https://github.com/truefrontier/laravel-soggy/blob/master/app/Console/Commands/SoggyMakeRoutes.php) from this repo to `/app/Console/Commands/SoggyMakeRoutes.php`
+#### 3. Create your vue-cli app
+`$ vue create app` - Be sure to add `vue-router` in history mode
+
+---
+
+#### 4. Add vue.config.js
+See [vue.config.js](https://github.com/truefrontier/laravel-soggy/blob/master/resources/vue/app/vue.config.js) from this repo. Save it to `/resources/vue/app/vue.config.js`
+
+---
+
+#### 5. 
+See [SoggyMakeRoutes.php](https://github.com/truefrontier/laravel-soggy/blob/master/app/Console/Commands/SoggyMakeRoutes.php) from this repo. Save it to `/app/Console/Commands/SoggyMakeRoutes.php`
+
+---
 
 #### 6. Add the following scripts to your `package.json`
 
@@ -37,9 +52,14 @@ __package.json__
 }
 ```
 
-#### 7. Save the [AppController](https://github.com/truefrontier/laravel-soggy/blob/master/app/Http/Controllers/AppController.php) from this repo to `/app/Http/Controllers/AppController.php`
+---
 
-#### 8. Configure routes to use AppController and be seen by `php artisan soggy:make-routes` command
+#### 7. Add AppController
+See [AppController.php](https://github.com/truefrontier/laravel-soggy/blob/master/app/Http/Controllers/AppController.php) from this repo. Save it to `/app/Http/Controllers/AppController.php`
+
+---
+
+#### 8. Configure your routes
 
 __routes/web.php__
 ```
@@ -56,7 +76,10 @@ Route::group(['name' => 'app.'], function () {
 
 __NOTE:__ The `->name('app.welcome')` is important here. The `php artisan soggy:make-routes --prefix=app --dest=resources/vue/app/src/router/routes.json` command looks for all the routes with a name that starts with `app.` (or whatever you pass as the `--prefix` and save a `routes.json` so that [vue-soggy](https://github.com/truefrontier/vue-soggy) can use it for your routes in your vue app.
 
-#### 9. Add the following to `<head>` in `/resources/vue/app/public/index.html`
+---
+
+#### 9. Inject data for initial pageload
+Add the following to `<head>` in `/resources/vue/app/public/index.html`
 
 __index.html__
 ```
@@ -65,5 +88,8 @@ __index.html__
 </script>
 ```
 
-#### 10. Finish the setup instructions for [vue-soggy](https://github.com/truefrontier/vue-soggy/blob/master/Readme.md#how-to-setup)
+---
+
+#### 10. Setup [vue-soggy](https://github.com/truefrontier/vue-soggy)
+Complete the setup instructions for [vue-soggy](https://github.com/truefrontier/vue-soggy/blob/master/Readme.md#how-to-setup)
 
