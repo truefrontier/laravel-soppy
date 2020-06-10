@@ -2,7 +2,7 @@
 
 This is an opinionated Laravel frontend setup for using [vue-cli](https://cli.vuejs.org) with [vue-soggy](https://github.com/truefrontier/vue-soggy) in a [Laravel](https://laravel.com/) project.
 
-## How to set up
+## How to setup
 
 ### Prerequisites
 
