@@ -164,6 +164,8 @@ $ ln -s [paste]/shared [paste]/admin/src/shared
 
 #### 3. Import shared files from `@/shared/your-file`
 
+---
+
 ### Share Tailwindcss assets too
 
 In each vue-cli project, you'll need to add a `postcss.config.js` file:
