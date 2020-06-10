@@ -31,7 +31,7 @@ See [vue.config.js](https://github.com/truefrontier/laravel-soggy/blob/master/re
 
 ---
 
-#### 5. 
+#### 5. Create `soggy:make-routes` command
 See [SoggyMakeRoutes.php](https://github.com/truefrontier/laravel-soggy/blob/master/app/Console/Commands/SoggyMakeRoutes.php) from this repo. Save it to `/app/Console/Commands/SoggyMakeRoutes.php`
 
 ---
