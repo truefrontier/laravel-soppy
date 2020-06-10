@@ -50,5 +50,14 @@ Route::group(['name' => 'app.'], function () {
 
 __NOTE:__ The `->name('app.welcome')` is important here. The `php artisan soggy:make-routes --prefix=app --dest=resources/vue/app/src/router/routes.json` command looks for all the routes with a name that starts with `app.` (or whatever you pass as the `--prefix` and save a `routes.json` so that [vue-soggy](https://github.com/truefrontier/vue-soggy) can use it for your routes in your vue app.
 
-9. Finish the setup instructions for [vue-soggy](https://github.com/truefrontier/vue-soggy)
+9. Add the following to `<head>` in `/resources/vue/app/public/index.html`
+
+__index.html__
+```
+<script>
+  window.SoggyState = <% if (NODE_ENV === 'production') { %>@json(array_merge($data, []))<% } else { %>{}<% } %>;
+</script>
+```
+
+10. Finish the setup instructions for [vue-soggy](https://github.com/truefrontier/vue-soggy)
 
