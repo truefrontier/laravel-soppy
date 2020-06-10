@@ -107,7 +107,7 @@ Complete the setup instructions for [vue-soggy](https://github.com/truefrontier/
 ---
 
 
-### Multiple vue-cli projects
+## Multiple vue-cli projects
 Let's say you have an `app` vue-cli project and you also want an `admin` vue-cli project. It's really simple:
 
 Start with Step 3 above, but now use `admin` (or whatever you prefer) instead of `app`
@@ -144,3 +144,88 @@ Use `admin.` instead of `app.`; For example, `->name('admin.dashboard')`
 
 __Step 9__
 Add it to `resources/vue/admin/public/index.html` instead
+
+---
+
+### Sharing components and assets between the two
+
+#### 1. Create a shared directory
+```
+$ mkdir my-project/resources/vue/shared && cd my-project/resources/vue/
+```
+
+#### 2. Create a soft link 
+Copy your full path with `pwd | pbcopy` and paste the result in place of `[paste]` below
+
+```
+$ ln -s [paste]/shared [paste]/app/src/shared
+$ ln -s [paste]/shared [paste]/admin/src/shared
+```
+
+#### 3. Import shared files from `@/shared/your-file`
+
+### Share Tailwindcss assets too
+
+In each vue-cli project, you'll need to add a `postcss.config.js` file:
+
+__postcss.config.js__
+```
+const path = require('path');
+
+module.exports = {
+  plugins: [
+    require('tailwindcss')(path.join(__dirname, './src/shared/tailwind.config.js')),
+    require('autoprefixer')(),
+  ],
+};
+
+```
+
+In each vue-cli project, you'll need to add to the `main.js` file:
+
+__main.js__
+```
+require('@/shared/assets/scss/main.scss');
+```
+
+__shared/assets/scss/main.scss__
+```
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+__shared/tailwind.config.js__
+```
+module.exports = {
+  purge: [
+    // '../js/**/*.js',
+    // '../js/**/*.vue',
+    // '../sass/**/*.scss',
+    // '../views/**/*.blade.php',
+    './*/src/**/*.js',
+    './*/src/**/*.vue',
+    './*/src/**/*.scss',
+    './*/public/**/*.html',
+  ],
+  theme: {
+    extend: {},
+  },
+  variants: {},
+  plugins: [],
+};
+```
+
+__shared/postcss.config.js__
+```
+const path = require('path');
+
+module.exports = {
+  plugins: [
+    require('tailwindcss')(path.join(__dirname, './tailwind.config.js')),
+    require('autoprefixer')(),
+  ],
+};
+```
+
+Yes, you need a third `postcss.config.js` file. This one has a different path to the `tailwind.config.js` file.
