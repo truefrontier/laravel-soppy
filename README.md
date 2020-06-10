@@ -1,6 +1,6 @@
 # laravel-soggy
 
-This is an opinionated Laravel frontend setup with [vue-soggy](https://github.com/truefrontier/laravel-soggy)
+This is an opinionated Laravel frontend setup for use [vue-cli](https://cli.vuejs.org) with [vue-soggy](https://github.com/truefrontier/laravel-soggy) in a [Laravel](https://laravel.com/) project.
 
 ## How to set up
 
