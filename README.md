@@ -110,7 +110,7 @@ Complete the setup instructions for [vue-soggy](https://github.com/truefrontier/
 ### Multiple vue-cli projects
 Let's say you have an `app` vue-cli project and you also want an `admin` vue-cli project. It's really simple:
 
-#### 1. Do steps above again, but with `admin` instead of `app`
+Start with Step 3 above, but now use `admin` (or whatever you prefer) instead of `app`
 
 __Step 3__
 - `$ cd my-project/resources/vue/`
