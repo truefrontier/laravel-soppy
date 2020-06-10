@@ -22,7 +22,7 @@ This is an opinionated Laravel frontend setup for using [vue-cli](https://cli.vu
 ---
 
 #### 3. Create your vue-cli app
-`$ vue create app` - Be sure to add `vue-router` in history mode
+`$ vue create app` - Be sure to add `vue-router` in history mode and `vuex`
 
 ---
 
@@ -57,6 +57,17 @@ __package.json__
 #### 7. Add AppController
 See [AppController.php](https://github.com/truefrontier/laravel-soggy/blob/master/app/Http/Controllers/AppController.php) from this repo. Save it to `/app/Http/Controllers/AppController.php`
 
+__NOTE:__ The important part is to return JSON when the request wants JSON and the view when it doesn't, like this:
+
+```
+public function someRouteAction(Request $request) {
+  $data = [
+    // Whatever date you want to be either injected on page load or return as JSON
+  ];
+  return $request->wantsJson() ? $data : view('app', ['data' => $data]);
+}
+```
+
 ---
 
 #### 8. Configure your routes
@@ -74,7 +85,7 @@ Route::group(['name' => 'app.'], function () {
 });
 ```
 
-__NOTE:__ The `->name('app.welcome')` is important here. The `php artisan soggy:make-routes --prefix=app --dest=resources/vue/app/src/router/routes.json` command looks for all the routes with a name that starts with `app.` (or whatever you pass as the `--prefix` and save a `routes.json` so that [vue-soggy](https://github.com/truefrontier/vue-soggy) can use it for your routes in your vue app.
+__NOTE:__ The `->name('app.welcome')` is important here. The `php artisan soggy:make-routes` command looks for all the routes with a name that starts with `app.` so that [vue-soggy](https://github.com/truefrontier/vue-soggy) can use it for your routes in your vue app.
 
 ---
 
@@ -93,3 +104,43 @@ __index.html__
 #### 10. Setup [vue-soggy](https://github.com/truefrontier/vue-soggy)
 Complete the setup instructions for [vue-soggy](https://github.com/truefrontier/vue-soggy/blob/master/Readme.md#how-to-setup)
 
+---
+
+
+### Multiple vue-cli projects
+Let's say you have an `app` vue-cli project and you also want an `admin` vue-cli project. It's really simple:
+
+#### 1. Do steps above again, but with `admin` instead of `app`
+
+__Step 3__
+- `$ cd my-project/resources/vue/`
+- `$ vue create admin` - Again, with `vue-router` in history mode and `vuex`
+
+__Step 4__
+- Change `AREA` to `admin` and save to `/resources/vue/admin/vue.config.js`
+
+__Step 5__
+The `soggy:make-routes` command can take two params. By default, it runs:
+
+```
+soggy:make-routes --prefix=app --dest=resources/vue/app/src/router/routes.json
+```
+
+Now, see Step 6 👇🏾
+
+__Step 6__
+```
+"preserve:admin": "php artisan soggy:make-routes --prefix=admin --dest=resources/vue/admin/src/router/routes.json",
+"serve:admin": "cd resources/vue/admin && yarn serve",
+"prebuild:admin": "php artisan soggy:make-routes --prefix=admin --dest=resources/vue/admin/src/router/routes.json",
+"build:admin": "cd resources/vue/admin && yarn build",
+```
+
+__Step 7__
+Copy `AppController.php` and rename it `AdminController.php`
+
+__Step 8__
+Use `admin.` instead of `app.`; For example, `->name('admin.dashboard')`
+
+__Step 9__
+Add it to `resources/vue/admin/public/index.html` instead
