@@ -59,5 +59,5 @@ __index.html__
 </script>
 ```
 
-10. Finish the setup instructions for [vue-soggy](https://github.com/truefrontier/vue-soggy)
+10. Finish the setup instructions for [vue-soggy](https://github.com/truefrontier/vue-soggy/blob/master/Readme.md#how-to-setup)
 
