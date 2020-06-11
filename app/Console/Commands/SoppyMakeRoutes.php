@@ -11,7 +11,9 @@ class SoppyMakeRoutes extends Command {
      *
      * @var string
      */
-    protected $signature = 'soppy:make-routes {prefix=app} {dest=resources/vue/app/src/router/routes.json}';
+    protected $signature = 'soppy:make-routes
+                            {--prefix=app : Looks for routes that start with prefix followed by a period. E.g. `->name("app.home")` }
+                            {--dest : [default: "resources/vue/app/src/router/routes.json"] }';
 
     /**
      * The console command description.
@@ -35,8 +37,8 @@ class SoppyMakeRoutes extends Command {
      * @return mixed
      */
     public function handle() {
-        $prefix = $this->argument('prefix');
-        $dest = $this->argument('dest');
+        $prefix = $this->option('prefix');
+        $dest = $this->option('dest') ?: str_replace('app', $prefix, 'resources/vue/app/src/router/routes.json');
 
         $routes = Route::getRoutes();
         $json = collect();

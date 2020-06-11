@@ -47,9 +47,10 @@ __package.json__
   ...
   "scripts": {
     ...
-    "preserve": "php artisan soppy:make-routes",
+    "routes": "php artisan soppy:make-routes"
+    "preserve": "npm run routes",
     "serve": "cd resources/vue/app && yarn serve",
-    "prebuild": "php artisan soppy:make-routes",
+    "prebuild": "npm run routes",
     "build": "cd resources/vue/app && yarn build"
   },
 }
@@ -133,9 +134,10 @@ Now, see Step 6 👇🏾
 
 __Step 6__
 ```
-"preserve:admin": "php artisan soppy:make-routes --prefix=admin --dest=resources/vue/admin/src/router/routes.json",
+"routes:admin": "php artisan soppy:make-routes --prefix=admin"
+"preserve:admin": "npm run routes:admin",
 "serve:admin": "cd resources/vue/admin && yarn serve",
-"prebuild:admin": "php artisan soppy:make-routes --prefix=admin --dest=resources/vue/admin/src/router/routes.json",
+"prebuild:admin": "npm run routes:admin",
 "build:admin": "cd resources/vue/admin && yarn build",
 ```
 
