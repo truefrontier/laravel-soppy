@@ -5,13 +5,13 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Route;
 
-class SoggyMakeRoutes extends Command {
+class SoppyMakeRoutes extends Command {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'soggy:make-routes {prefix=app} {dest=resources/vue/app/src/router/routes.json}';
+    protected $signature = 'soppy:make-routes {prefix=app} {dest=resources/vue/app/src/router/routes.json}';
 
     /**
      * The console command description.

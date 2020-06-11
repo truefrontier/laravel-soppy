@@ -1,9 +1,9 @@
-# laravel-soggy
+# laravel-soppy
 
-This is an opinionated Laravel frontend setup for using [vue-cli](https://cli.vuejs.org) with [vue-soggy](https://github.com/truefrontier/vue-soggy) in a [Laravel](https://laravel.com/) project. You can even [run multiple vue-cli projects](https://github.com/truefrontier/laravel-soggy/blob/master/README.md#multiple-vue-cli-projects) (eg. `app` and `admin`). You can even [share tailwindcss config](https://github.com/truefrontier/laravel-soggy/blob/master/README.md#share-tailwindcss-assets-too) between the two!
+This is an opinionated Laravel frontend setup for using [vue-cli](https://cli.vuejs.org) with [vue-soppy](https://github.com/truefrontier/vue-soppy) in a [Laravel](https://laravel.com/) project. You can even [run multiple vue-cli projects](https://github.com/truefrontier/laravel-soppy/blob/master/README.md#multiple-vue-cli-projects) (eg. `app` and `admin`). You can even [share tailwindcss config](https://github.com/truefrontier/laravel-soppy/blob/master/README.md#share-tailwindcss-assets-too) between the two!
 
 ## What and Why?
-Check out [this article on Medium](https://medium.com/@kevinkirchner/a-ready-to-try-concept-in-response-to-second-guessing-the-modern-web-6946ec4d0598) to get a better understanding why vue-soggy exists.
+Check out [this article on Medium](https://medium.com/@kevinkirchner/a-ready-to-try-concept-in-response-to-second-guessing-the-modern-web-6946ec4d0598) to get a better understanding why vue-soppy exists.
 
 ## How to setup
 
@@ -30,12 +30,12 @@ Check out [this article on Medium](https://medium.com/@kevinkirchner/a-ready-to-
 ---
 
 #### 4. Add vue.config.js
-See [vue.config.js](https://github.com/truefrontier/laravel-soggy/blob/master/resources/vue/app/vue.config.js) from this repo. Save it to `/resources/vue/app/vue.config.js`
+See [vue.config.js](https://github.com/truefrontier/laravel-soppy/blob/master/resources/vue/app/vue.config.js) from this repo. Save it to `/resources/vue/app/vue.config.js`
 
 ---
 
-#### 5. Create `soggy:make-routes` command
-See [SoggyMakeRoutes.php](https://github.com/truefrontier/laravel-soggy/blob/master/app/Console/Commands/SoggyMakeRoutes.php) from this repo. Save it to `/app/Console/Commands/SoggyMakeRoutes.php`
+#### 5. Create `soppy:make-routes` command
+See [SoppyMakeRoutes.php](https://github.com/truefrontier/laravel-soppy/blob/master/app/Console/Commands/SoppyMakeRoutes.php) from this repo. Save it to `/app/Console/Commands/SoppyMakeRoutes.php`
 
 ---
 
@@ -47,9 +47,9 @@ __package.json__
   ...
   "scripts": {
     ...
-    "preserve": "php artisan soggy:make-routes",
+    "preserve": "php artisan soppy:make-routes",
     "serve": "cd resources/vue/app && yarn serve",
-    "prebuild": "php artisan soggy:make-routes",
+    "prebuild": "php artisan soppy:make-routes",
     "build": "cd resources/vue/app && yarn build"
   },
 }
@@ -58,7 +58,7 @@ __package.json__
 ---
 
 #### 7. Add AppController
-See [AppController.php](https://github.com/truefrontier/laravel-soggy/blob/master/app/Http/Controllers/AppController.php) from this repo. Save it to `/app/Http/Controllers/AppController.php`
+See [AppController.php](https://github.com/truefrontier/laravel-soppy/blob/master/app/Http/Controllers/AppController.php) from this repo. Save it to `/app/Http/Controllers/AppController.php`
 
 __NOTE:__ The important part is to return JSON when the request wants JSON and the view when it doesn't, like this:
 
@@ -88,7 +88,7 @@ Route::group(['name' => 'app.'], function () {
 });
 ```
 
-__NOTE:__ The `->name('app.welcome')` is important here. The `php artisan soggy:make-routes` command looks for all the routes with a name that starts with `app.` so that [vue-soggy](https://github.com/truefrontier/vue-soggy) can use it for your routes in your vue app.
+__NOTE:__ The `->name('app.welcome')` is important here. The `php artisan soppy:make-routes` command looks for all the routes with a name that starts with `app.` so that [vue-soppy](https://github.com/truefrontier/vue-soppy) can use it for your routes in your vue app.
 
 ---
 
@@ -98,14 +98,14 @@ Add the following to `<head>` in `/resources/vue/app/public/index.html`
 __index.html__
 ```
 <script>
-  window.SoggyState = <% if (NODE_ENV === 'production') { %>@json(array_merge($data, []))<% } else { %>{}<% } %>;
+  window.SoppyState = <% if (NODE_ENV === 'production') { %>@json(array_merge($data, []))<% } else { %>{}<% } %>;
 </script>
 ```
 
 ---
 
-#### 10. Setup [vue-soggy](https://github.com/truefrontier/vue-soggy)
-Complete the setup instructions for [vue-soggy](https://github.com/truefrontier/vue-soggy/blob/master/Readme.md#how-to-setup)
+#### 10. Setup [vue-soppy](https://github.com/truefrontier/vue-soppy)
+Complete the setup instructions for [vue-soppy](https://github.com/truefrontier/vue-soppy/blob/master/Readme.md#how-to-setup)
 
 ---
 
@@ -123,19 +123,19 @@ __Step 4__
 - Change `AREA` to `admin` and save to `/resources/vue/admin/vue.config.js`
 
 __Step 5__
-The `soggy:make-routes` command can take two params. By default, it runs:
+The `soppy:make-routes` command can take two params. By default, it runs:
 
 ```
-soggy:make-routes --prefix=app --dest=resources/vue/app/src/router/routes.json
+soppy:make-routes --prefix=app --dest=resources/vue/app/src/router/routes.json
 ```
 
 Now, see Step 6 👇🏾
 
 __Step 6__
 ```
-"preserve:admin": "php artisan soggy:make-routes --prefix=admin --dest=resources/vue/admin/src/router/routes.json",
+"preserve:admin": "php artisan soppy:make-routes --prefix=admin --dest=resources/vue/admin/src/router/routes.json",
 "serve:admin": "cd resources/vue/admin && yarn serve",
-"prebuild:admin": "php artisan soggy:make-routes --prefix=admin --dest=resources/vue/admin/src/router/routes.json",
+"prebuild:admin": "php artisan soppy:make-routes --prefix=admin --dest=resources/vue/admin/src/router/routes.json",
 "build:admin": "cd resources/vue/admin && yarn build",
 ```
 
