@@ -56,9 +56,10 @@ class SoppyMakeRoutes extends Command {
                 ]);
             }
         }
+        $count = $json->count();
         $file = fopen(base_path($dest), 'w');
         fwrite($file, $json->toJson());
         fclose($file);
-        echo "Routes made ===> " . base_path($dest) . "\n";
+        echo "Routes made ($count) => " . base_path($dest) . "\n";
     }
 }
