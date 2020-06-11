@@ -159,50 +159,30 @@ Add it to `resources/vue/admin/public/index.html` instead
 $ mkdir my-project/resources/vue/shared && cd my-project/resources/vue/
 ```
 
-#### 2. Create a soft link 
-Copy your full path with `pwd | pbcopy` and paste the result in place of `[paste]` below
-
+#### 2. Add alias in both `vue.config.js` files
+__resources/vue/[app/admin]/vue.config.js__
 ```
-$ ln -s [paste]/shared [paste]/app/src/shared
-$ ln -s [paste]/shared [paste]/admin/src/shared
+modules.export = {
+  // ...
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@@': path.join(__dirname, '../'),
+      },
+    },
+  },
+  // ...
+}
 ```
 
-#### 3. Import shared files from `@/shared/your-file`
+
+#### 3. Import shared files from `@@/shared/your-file`
 
 ---
 
 ### Share Tailwindcss assets too
 
-In each vue-cli project, you'll need to add a `postcss.config.js` file:
-
-__resources/vue/[app/admin]/src/postcss.config.js__
-```
-const path = require('path');
-
-module.exports = {
-  plugins: [
-    require('tailwindcss')(path.join(__dirname, './src/shared/tailwind.config.js')),
-    require('autoprefixer')(),
-  ],
-};
-
-```
-
-In each vue-cli project, you'll need to add to the `main.js` file:
-
-__resources/vue/[app/admin]/src/main.js__
-```
-require('@/shared/assets/scss/main.scss');
-```
-
-__resources/vue/shared/assets/scss/main.scss__
-```
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-```
-
-__resources/vue/shared/tailwind.config.js__
+__resources/vue/tailwind.config.js__
 ```
 module.exports = {
   purge: [
@@ -223,7 +203,7 @@ module.exports = {
 };
 ```
 
-__resources/vue/shared/postcss.config.js__
+__resources/vue/postcss.config.js__
 ```
 const path = require('path');
 
@@ -235,4 +215,36 @@ module.exports = {
 };
 ```
 
-Yes, you need a third `postcss.config.js` file. This one has a different path to the `tailwind.config.js` file.
+Set custom config path for postcss in `vue.config.js`
+
+__resources/vue/[app/admin]/vue.config.js__
+```
+modules.export = {
+  // ...
+  css: {
+    loaderOptions: {
+      postcss: {
+        config: {
+          path: '../postcss.config.js',
+        },
+      },
+    },
+  },
+  // ...
+}
+```
+
+In each vue-cli project, you'll need to add to the `main.js` file:
+
+__resources/vue/[app/admin]/src/main.js__
+```
+require('@@/shared/assets/scss/main.scss');
+```
+
+__resources/vue/shared/assets/scss/main.scss__
+```
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
