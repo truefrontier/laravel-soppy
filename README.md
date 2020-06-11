@@ -81,14 +81,6 @@ __routes/web.php__
 Route::get('/', 'AppController@welcome')->name('app.welcome');
 ```
 
-Or you can group your `app` routes like this:
-```
-Route::group(['name' => 'app.'], function () {
-  Route::get('/', 'AppController@welcome')->name('welcome');
-  // Add more `app.` routes here...
-});
-```
-
 __NOTE:__ The `->name('app.welcome')` is important here. The `php artisan soppy:make-routes` command looks for all the routes with a name that starts with `app.` so that [vue-soppy](https://github.com/truefrontier/vue-soppy) can use it for your routes in your vue app.
 
 ---
