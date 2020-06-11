@@ -142,6 +142,15 @@ Use `admin.` instead of `app.`; For example, `->name('admin.dashboard')`
 __Step 9__
 Add it to `resources/vue/admin/public/index.html` instead
 
+__Step 10__
+You may consider installing packages that will be used in both projects in `resources/vue/`.
+
+```
+$ cd my-project/resources/vue/
+$ echo "{}" >> package.json
+$ npm i --save vue-soggy
+```
+
 ---
 
 ### Sharing components and assets between the two
