@@ -204,16 +204,18 @@ modules.export = {
 
 __resources/vue/tailwind.config.js__
 ```
+const path = require('path');
+
 module.exports = {
   purge: [
-    // '../js/**/*.js',
-    // '../js/**/*.vue',
-    // '../sass/**/*.scss',
-    // '../views/**/*.blade.php',
-    './*/src/**/*.js',
-    './*/src/**/*.vue',
-    './*/src/**/*.scss',
-    './*/public/**/*.html',
+    path.join(__dirname, './*/src/**/*.html'),
+    path.join(__dirname, './*/src/**/*.js'),
+    path.join(__dirname, './*/src/**/*.vue'),
+    path.join(__dirname, './*/src/**/*.scss'),
+    path.join(__dirname, './shared/**/*.html'),
+    path.join(__dirname, './shared/**/*.js'),
+    path.join(__dirname, './shared/**/*.vue'),
+    path.join(__dirname, './shared/**/*.scss'),
   ],
   theme: {
     extend: {},
@@ -263,8 +265,10 @@ require('@@/shared/assets/scss/main.scss');
 
 __resources/vue/shared/assets/scss/main.scss__
 ```
+/* purgecss start ignore */
 @tailwind base;
 @tailwind components;
+/* purgecss end ignore */
 @tailwind utilities;
 ```
 
